@@ -6,9 +6,11 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "got": "^11.3.0"
+    "got": "^11.3.0",
+    "jsdom": "^16.2.2"
   },
   "devDependencies": {
-    "@types/got": "^9.6.11"
+    "@types/got": "^9.6.11",
+    "@types/jsdom": "^16.2.3"
   }
 }
