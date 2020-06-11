@@ -4,5 +4,11 @@
   "main": "index.js",
   "author": "wintus <6386129+wintus@users.noreply.github.com>",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "got": "^11.3.0"
+  },
+  "devDependencies": {
+    "@types/got": "^9.6.11"
+  }
 }
