@@ -1,5 +1,5 @@
 {
-  "name": "humidity-scraping",
+  "name": "humidity-scraper",
   "version": "1.0.0",
   "main": "index.js",
   "author": "wintus <6386129+wintus@users.noreply.github.com>",
