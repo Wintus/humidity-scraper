@@ -22,12 +22,12 @@ const convertValue: (_: string) => string | number | null = cond([
 // { 風向: Dir } => { 風向: number }
 const convertDir = over(lensProp(dirField), dirAngle);
 
-const fetchData = async () => {
+export const fetchData = async () => {
   const response = await got(url);
   const virtualConsole = new VirtualConsole(); // noop; suppress warning
   const dom = await new JSDOM(response.body, { virtualConsole });
 
-  const title = dom.window.document.querySelector(titleId);
+  const title = dom.window.document.querySelector(titleId)?.textContent;
   const table = dom.window.document.getElementById(domId);
   if (!table) {
     throw new Error(`Not Found: id=${domId}`);
@@ -36,7 +36,7 @@ const fetchData = async () => {
   return { title, table };
 };
 
-const convertDom = (table: HTMLElement) => {
+export const convertDom = (table: HTMLElement) => {
   const tr_list = table.getElementsByTagName("tr");
   const [fieldNames, fieldUnits, ...rest] = Array.from(tr_list).map(toRow);
 
@@ -48,11 +48,3 @@ const convertDom = (table: HTMLElement) => {
 
   return { units, records };
 };
-
-(async () => {
-  const { title, table } = await fetchData();
-  console.log(title?.textContent);
-
-  const result = convertDom(table);
-  console.log(result);
-})();
