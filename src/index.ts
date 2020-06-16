@@ -7,6 +7,6 @@ const main = async () => {
 };
 
 main().then(({ title, data }) => {
-  console.info(title);
+  console.info(title?.split(/\s/));
   console.info(data);
 });
