@@ -1,5 +1,5 @@
 import got from "got";
-import { JSDOM } from "jsdom";
+import { JSDOM, VirtualConsole } from "jsdom";
 import { zipObj, cond, T, test, always, over, lensProp } from "ramda";
 import { dirAngle } from "./direction";
 
@@ -24,7 +24,8 @@ const convertDir = over(lensProp(dirField), dirAngle);
 
 const fetchData = async () => {
   const response = await got(url);
-  const dom = await new JSDOM(response.body);
+  const virtualConsole = new VirtualConsole(); // noop; suppress warning
+  const dom = await new JSDOM(response.body, { virtualConsole });
 
   const title = dom.window.document.querySelector(titleId);
   const table = dom.window.document.getElementById(domId);
