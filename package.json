@@ -3,5 +3,6 @@
   "version": "0.1.0",
   "main": "index.js",
   "author": "wintus <6386129+wintus@users.noreply.github.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "private": true
 }
