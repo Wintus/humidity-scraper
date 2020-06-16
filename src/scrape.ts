@@ -1,6 +1,6 @@
 import got from "got";
 import { JSDOM, VirtualConsole } from "jsdom";
-import { zipObj, cond, T, test, always, over, lensProp } from "ramda";
+import { zipObj, cond, T, test, always, over, lensProp, map } from "ramda";
 import { dirAngle } from "./direction";
 
 const url = "https://www.jma.go.jp/jp/amedas_h/today-44132.html";
@@ -42,7 +42,7 @@ export const convertDom = (table: HTMLElement) => {
 
   const units = zipObj(fieldNames, fieldUnits);
   const records = rest
-    .map((row) => row.map(convertValue))
+    .map(map(convertValue))
     .map(zipObj(fieldNames))
     .map(convertDir);
 
