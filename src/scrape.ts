@@ -1,3 +1,4 @@
+import got from "got";
 import { JSDOM } from "jsdom";
 import { zipObj, cond, T, test, always, over, lensProp } from "ramda";
 import { dirAngle } from "./direction";
@@ -22,7 +23,8 @@ const convertValue: (_: string) => string | number | null = cond([
 const convertDir = over(lensProp(dirField), dirAngle);
 
 const fetchData = async () => {
-  const dom = await JSDOM.fromURL(url);
+  const response = await got(url);
+  const dom = await new JSDOM(response.body);
 
   const title = dom.window.document.querySelector(titleId);
   const table = dom.window.document.getElementById(domId);
